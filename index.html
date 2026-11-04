@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chúc mừng sinh nhật!</title>
+    <!-- Sử dụng Google Font mô phỏng chữ viết tay -->
+    <link href="https://fonts.googleapis.com/css2?family=Mali:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #fdf5e6;
+            font-family: 'Mali', cursive;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Màn hình nút bấm ban đầu */
+        #intro {
+            text-align: center;
+            z-index: 10;
+        }
+
+        button {
+            padding: 15px 40px;
+            font-size: 20px;
+            font-family: 'Mali', cursive;
+            background-color: #ff80ab;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 128, 171, 0.4);
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            background-color: #f50057;
+        }
+
+        /* Giao diện thiệp (cuốn sổ) */
+        #card-container {
+            display: none;
+            width: 90%;
+            max-width: 450px;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            padding: 40px 30px 40px 50px;
+            box-sizing: border-box;
+            border-left: 35px solid #f8bbd0; /* Phần gáy sổ màu hồng */
+            animation: fadeIn 1.2s ease-out;
+        }
+
+        /* Các lỗ tròn của gáy sổ */
+        #card-container::before {
+            content: '';
+            position: absolute;
+            left: -25px;
+            top: 20px;
+            bottom: 20px;
+            width: 15px;
+            background-image: radial-gradient(circle, #fdf5e6 45%, transparent 50%);
+            background-size: 15px 40px;
+            background-repeat: repeat-y;
+        }
+
+        .date {
+            text-align: right;
+            color: #7f8c8d;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .content {
+            color: #2c3e50;
+            line-height: 1.8;
+            font-size: 18px;
+        }
+
+        .highlight {
+            color: #4b6584;
+            font-weight: 600;
+            text-align: center;
+            display: block;
+            margin-top: 30px;
+            font-size: 20px;
+            text-transform: uppercase;
+        }
+
+        .heart-icon {
+            color: #e84393;
+        }
+
+        /* Các icon trang trí giả lập hình vẽ */
+        .decor {
+            font-size: 35px;
+            position: absolute;
+        }
+        .top-left { top: 10px; left: 15px; }
+        .bottom-right { bottom: -10px; right: 20px; opacity: 0.8; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="intro">
+        <button id="openBtn">Có một bất ngờ dành cho bạn nè! 🎁</button>
+    </div>
+
+    <div id="card-container">
+        <div class="decor top-left">💝🌈</div>
+        
+        <div class="date" id="currentDate"></div>
+        
+        <div class="content">
+            <p><strong>Gửi đến cô gái xinh đẹp đang đọc thư!</strong> 💌</p>
+            <p>Chúc bạn có một ngày sinh nhật thật bình yên — nơi có nụ cười, hoa, và cả những lời yêu thương ngọt ngào nhất.</p>
+            <p>Chúc bạn sang tuổi mới luôn là chính mình, luôn đủ mạnh mẽ để bước qua mọi giông bão, và vẫn dịu dàng như những ngày đầu. 🌷</p>
+            <p>Dù thế giới có ồn ào, mong bạn vẫn giữ được trái tim trong trẻo, niềm tin vẹn nguyên và sự tự tin rằng:</p>
+            <span class="highlight">BẠN XỨNG ĐÁNG VỚI NHỮNG ĐIỀU TỐT ĐẸP NHẤT. <span class="heart-icon">💖</span></span>
+        </div>
+
+        <div class="decor bottom-right">🌷🌿</div>
+    </div>
+
+    <script>
+        // Tự động lấy ngày tháng hiện tại
+        const today = new Date();
+        const options = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' };
+        document.getElementById('currentDate').innerText = today.toLocaleDateString('en-GB', options);
+
+        // Xử lý sự kiện nhấn nút để ẩn Intro và hiện Thiệp
+        document.getElementById('openBtn').addEventListener('click', function() {
+            document.getElementById('intro').style.display = 'none';
+            document.getElementById('card-container').style.display = 'block';
+        });
+    </script>
+</body>
+</html>
