@@ -17,8 +17,8 @@
             align-items: center;
             min-height: 100vh;
             overflow-x: hidden;
-            overflow-y: auto; /* Cho phép cuộn dọc nếu nội dung dài */
-            padding: 20px 0; /* Thêm khoảng không trên dưới */
+            overflow-y: auto;
+            padding: 20px 0;
             box-sizing: border-box;
         }
 
@@ -42,16 +42,15 @@
         }
 
         button:hover {
-            transform: scale(1.05);
             background-color: #f50057;
         }
 
         /* Khung chứa tổng thể gồm Ảnh và Thiệp */
         #main-content {
-            display: none; /* Ẩn ban đầu */
+            display: none;
             justify-content: center;
-            align-items: center;
-            gap: 40px; /* Khoảng cách giữa ảnh và thiệp */
+            align-items: flex-start;
+            gap: 40px;
             width: 100%;
             max-width: 1200px;
             padding: 0 20px;
@@ -62,22 +61,62 @@
         .image-column {
             display: flex;
             flex-direction: column;
-            gap: 20px; /* Khoảng cách giữa các ảnh với nhau */
+            gap: 30px;
             animation: fadeIn 1.5s ease-out;
         }
 
-        .image-column img {
+        /* Container bọc từng ảnh và note (sắp xếp dọc) */
+        .image-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .image-wrapper img {
             width: 250px;
             height: 250px;
-            object-fit: cover; /* Đảm bảo ảnh không bị méo */
+            object-fit: cover;
             border-radius: 12px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-            border: 5px solid #ffffff; /* Viền trắng giống ảnh chụp */
+            border: 5px solid #ffffff;
             transition: transform 0.3s;
         }
 
-        .image-column img:hover {
-            transform: scale(1.05) rotate(-2deg); /* Hiệu ứng nhẹ khi di chuột */
+        .image-wrapper:hover img {
+            transform: scale(1.05) rotate(-2deg);
+        }
+
+        /* 6 BẢNG TRONG SUỐT ĐỂ VIẾT NOTE */
+        .note-box {
+            width: 250px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(4px); 
+            border: 2px dashed #f8bbd0;
+            border-radius: 8px;
+            padding: 8px 12px;
+            font-family: 'Mali', cursive;
+            font-size: 15px;
+            color: #2c3e50;
+            resize: none; 
+            outline: none;
+            box-sizing: border-box;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .note-box::placeholder {
+            color: #888;
+            font-style: italic;
+        }
+
+        .note-box:focus {
+            background: rgba(255, 255, 255, 0.85);
+            height: 85px; 
+            border: 2px solid #ff80ab;
+            box-shadow: 0 5px 15px rgba(255, 128, 171, 0.2);
         }
 
         /* Giao diện thiệp (cuốn sổ) */
@@ -94,7 +133,6 @@
             animation: fadeIn 1.2s ease-out;
         }
 
-        /* Các lỗ tròn của gáy sổ */
         #card-container::before {
             content: '';
             position: absolute;
@@ -147,10 +185,10 @@
             to { opacity: 1; transform: scale(1) translateY(0); }
         }
 
-        /* Căn chỉnh lại trên màn hình điện thoại / máy tính bảng */
         @media (max-width: 950px) {
             #main-content {
-                flex-direction: column; /* Đẩy các cột ảnh lên trên/xuống dưới thiệp */
+                flex-direction: column;
+                align-items: center;
                 gap: 30px;
             }
             .image-column {
@@ -158,29 +196,41 @@
                 flex-wrap: wrap;
                 justify-content: center;
             }
-            .image-column img {
-                width: 110px;
-                height: 110px;
+            .image-wrapper img {
+                width: 130px;
+                height: 130px;
+            }
+            .note-box {
+                width: 130px;
+                font-size: 12px;
+                padding: 6px;
+                height: 35px;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- Màn hình mở đầu -->
     <div id="intro">
         <button id="openBtn">Ấn dô!!!</button>
     </div>
 
-    <!-- Nội dung chính (Hiển thị sau khi ấn nút) -->
     <div id="main-content">
         
         <!-- Cột 3 ảnh bên trái -->
-        <!-- BẠN THAY LINK ẢNH VÀO PHẦN src="" Ở DƯỚI NHÉ -->
         <div class="image-column">
-            <img src="1.png" alt="Ảnh 1">
-            <img src="https://via.placeholder.com/160/add8e6/ffffff?text=Anh+2" alt="Ảnh 2">
-            <img src="https://via.placeholder.com/160/98fb98/ffffff?text=Anh+3" alt="Ảnh 3">
+            <div class="image-wrapper">
+                <img src="1.jpq" alt="Ảnh 1">
+                <textarea class="note-box" placeholder="Ảnh trước ngày chụp kỉ yếu của em."></textarea>
+            </div>
+            <div class="image-wrapper">
+                <img src="2.jpq" alt="Ảnh 2">
+                <textarea class="note-box" placeholder="Ảnh Kim Hằng chụp mẫu em, em bảo hôm đó đến tháng em phải gồng lắm mới chụp được."></textarea>
+            </div>
+            <div class="image-wrapper">
+                <img src="3.jpq" alt="Ảnh 3">
+                <textarea class="note-box" placeholder="Má bánh baoooo"></textarea>
+            </div>
         </div>
 
         <!-- Tấm thiệp ở giữa -->
@@ -201,25 +251,45 @@
         </div>
 
         <!-- Cột 3 ảnh bên phải -->
-        <!-- BẠN THAY LINK ẢNH VÀO PHẦN src="" Ở DƯỚI NHÉ -->
         <div class="image-column">
-            <img src="https://via.placeholder.com/160/ffd700/ffffff?text=Anh+4" alt="Ảnh 4">
-            <img src="https://via.placeholder.com/160/dda0dd/ffffff?text=Anh+5" alt="Ảnh 5">
-            <img src="https://via.placeholder.com/160/ffa07a/ffffff?text=Anh+6" alt="Ảnh 6">
+            <div class="image-wrapper">
+                <img src="4.jpq" alt="Ảnh 4">
+                <textarea class="note-box" placeholder="Ảnh hôm em lên hoàn kiếm rửa ảnh cho bạn, rồi mình đi cafe trên đó đến tối, trước trung thu 1 ngày."></textarea>
+            </div>
+            <div class="image-wrapper">
+                <img src="5.jpq" alt="Ảnh 5">
+                <textarea class="note-box" placeholder="Đêm em đón chị ở bến xe, ngủ quên ở dó 30p xong nhắn loạn anh lên."></textarea>
+            </div>
+            <div class="image-wrapper">
+                <img src="6.jpq]" alt="Ảnh 6">
+                <textarea class="note-box" placeholder="Lần đầu anh đi Shanse với em, em lấy máy anh nghịch, thế là có mấy ảnh này."></textarea>
+            </div>
         </div>
 
     </div>
 
     <script>
-        // Tự động lấy ngày tháng hiện tại
-        const today = new Date();
-        const options = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' };
-        document.getElementById('currentDate').innerText = today.toLocaleDateString('en-GB', options);
+        // Set cứng ngày theo yêu cầu
+        document.getElementById('currentDate').innerText = '5/11/2026';
 
-        // Xử lý sự kiện nhấn nút để ẩn Intro và hiện toàn bộ phần Thiệp + Ảnh
-        document.getElementById('openBtn').addEventListener('click', function() {
-            document.getElementById('intro').style.display = 'none';
-            document.getElementById('main-content').style.display = 'flex'; // Chuyển thành flex để hiển thị dạng cột
+        // Xử lý sự kiện nhấn nút 2 lần
+        let clickCount = 0;
+        const openBtn = document.getElementById('openBtn');
+
+        openBtn.addEventListener('click', function() {
+            if (clickCount === 0) {
+                // Lần nhấn đầu tiên
+                openBtn.innerText = "Ấn thêm lần nữa đi 😝";
+                openBtn.style.transform = "scale(1.1)";
+                setTimeout(() => {
+                    openBtn.style.transform = "scale(1)";
+                }, 200);
+                clickCount++;
+            } else {
+                // Lần nhấn thứ hai
+                document.getElementById('intro').style.display = 'none';
+                document.getElementById('main-content').style.display = 'flex';
+            }
         });
     </script>
 </body>
