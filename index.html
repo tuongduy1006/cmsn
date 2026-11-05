@@ -87,36 +87,22 @@
             transform: scale(1.05) rotate(-2deg);
         }
 
-        /* 6 BẢNG TRONG SUỐT ĐỂ VIẾT NOTE */
+        /* 6 BẢNG TRONG SUỐT ĐỂ HIỂN THỊ NOTE (KHÔNG CHO NHẬP) */
         .note-box {
             width: 250px;
-            height: 40px;
+            min-height: 40px; /* Tự động kéo dài xuống nếu chữ dài */
             background: rgba(255, 255, 255, 0.4);
             backdrop-filter: blur(4px); 
             border: 2px dashed #f8bbd0;
             border-radius: 8px;
-            padding: 8px 12px;
+            padding: 12px;
             font-family: 'Mali', cursive;
             font-size: 15px;
             color: #2c3e50;
-            resize: none; 
-            outline: none;
             box-sizing: border-box;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            transition: all 0.3s ease;
-            overflow: hidden;
-        }
-
-        .note-box::placeholder {
-            color: #888;
-            font-style: italic;
-        }
-
-        .note-box:focus {
-            background: rgba(255, 255, 255, 0.85);
-            height: 85px; 
-            border: 2px solid #ff80ab;
-            box-shadow: 0 5px 15px rgba(255, 128, 171, 0.2);
+            text-align: center;
+            line-height: 1.5;
         }
 
         /* Giao diện thiệp (cuốn sổ) */
@@ -203,8 +189,8 @@
             .note-box {
                 width: 130px;
                 font-size: 12px;
-                padding: 6px;
-                height: 35px;
+                padding: 8px;
+                min-height: 35px;
             }
         }
     </style>
@@ -220,16 +206,18 @@
         <!-- Cột 3 ảnh bên trái -->
         <div class="image-column">
             <div class="image-wrapper">
-                <img src="1.jpq" alt="Ảnh 1">
-                <textarea class="note-box" placeholder="Ảnh trước ngày chụp kỉ yếu của em."></textarea>
+                <!-- Đã sửa lỗi đuôi ảnh .jpq thành .jpg -->
+                <img src="1.jpg" alt="Ảnh 1">
+                <!-- Chuyển textarea thành div tĩnh -->
+                <div class="note-box">Ảnh trước ngày chụp kỉ yếu của em.</div>
             </div>
             <div class="image-wrapper">
-                <img src="2.jpq" alt="Ảnh 2">
-                <textarea class="note-box" placeholder="Ảnh Kim Hằng chụp mẫu em, em bảo hôm đó đến tháng em phải gồng lắm mới chụp được."></textarea>
+                <img src="2.jpg" alt="Ảnh 2">
+                <div class="note-box">Ảnh Kim Hằng chụp mẫu em, em bảo hôm đó đến tháng em phải gồng lắm mới chụp được.</div>
             </div>
             <div class="image-wrapper">
-                <img src="3.jpq" alt="Ảnh 3">
-                <textarea class="note-box" placeholder="Má bánh baoooo"></textarea>
+                <img src="3.jpg" alt="Ảnh 3">
+                <div class="note-box">Má bánh baoooo</div>
             </div>
         </div>
 
@@ -253,16 +241,17 @@
         <!-- Cột 3 ảnh bên phải -->
         <div class="image-column">
             <div class="image-wrapper">
-                <img src="4.jpq" alt="Ảnh 4">
-                <textarea class="note-box" placeholder="Ảnh hôm em lên hoàn kiếm rửa ảnh cho bạn, rồi mình đi cafe trên đó đến tối, trước trung thu 1 ngày."></textarea>
+                <img src="4.jpg" alt="Ảnh 4">
+                <div class="note-box">Ảnh hôm em lên hoàn kiếm rửa ảnh cho bạn, rồi mình đi cafe trên đó đến tối, trước trung thu 1 ngày.</div>
             </div>
             <div class="image-wrapper">
-                <img src="5.jpq" alt="Ảnh 5">
-                <textarea class="note-box" placeholder="Đêm em đón chị ở bến xe, ngủ quên ở dó 30p xong nhắn loạn anh lên."></textarea>
+                <img src="5.jpg" alt="Ảnh 5">
+                <div class="note-box">Đêm em đón chị ở bến xe, ngủ quên ở dó 30p xong nhắn loạn anh lên.</div>
             </div>
             <div class="image-wrapper">
-                <img src="6.jpq]" alt="Ảnh 6">
-                <textarea class="note-box" placeholder="Lần đầu anh đi Shanse với em, em lấy máy anh nghịch, thế là có mấy ảnh này."></textarea>
+                <!-- Đã xóa dấu ngoặc lỗi ở 6.jpq] -->
+                <img src="6.jpg" alt="Ảnh 6">
+                <div class="note-box">Lần đầu anh đi Shanse với em, em lấy máy anh nghịch, thế là có mấy ảnh này.</div>
             </div>
         </div>
 
